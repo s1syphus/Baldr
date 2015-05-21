@@ -1,0 +1,16 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mike/Development/Baldr/cppBaldr/src/baldr.cpp
+opencv2/opencv.hpp
+/home/mike/Development/Baldr/cppBaldr/src/opencv2/opencv.hpp
+stdio.h
+-
+opencv2/xfeatures2d.hpp
+/home/mike/Development/Baldr/cppBaldr/src/opencv2/xfeatures2d.hpp
+
