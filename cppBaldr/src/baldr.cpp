@@ -15,52 +15,55 @@
 
 
 #include "opencv2/opencv.hpp"
-//#include "opencv2/nonfree/nonfree.hpp"
 #include<stdio.h>
 #include "opencv2/xfeatures2d.hpp"
+#include <time.h>
+#include <iostream>
 
+using namespace cv;
 
 int main(int argc, char** argv){
 
-  //testing some things
-  //this should be moved soon
-  
-  /*
-  cv::VideoCapture cap(argv[1]);
+  clock_t start, fromSift;
+
+  VideoCapture cap(argv[1]);
   if(!cap.isOpened()){
-    cout<<"ERROR\n";
+    std::cout<<"ERROR\n";
     return 1;
-    }
-
-  int frameCount = 0;
-  bool shouldStop = false;
+  }
   
+  int frameCount = 0;
+  Mat frame, output;
+  char rawfilename[128], siftedfilename[128];
+  Ptr<Feature2D> f2d = xfeatures2d::SIFT::create();
+  std::vector<KeyPoint> keypoints;
 
-  while(!shouldStop){
-    cv::Mat frame;
+
+  while(1){
+    start = clock();
     cap >> frame;
     if(frame.empty()){
-      shouldStop = true;
-      continue;
+      break;
     }
-    char filename[128];
-    sprintf(filename, "../frames/frame_%06d.jpg", frameCount);
-    cv::imwrite(filename, frame);
-   frameCount++;
-  }
-  //add timing in here at some point
-  const cv::Mat input = cv::imread("../frames/frame_000001.jpg", 0);
+    //raw frames
+    sprintf(rawfilename, "../rawFrames/frame_%06d.jpg", frameCount);
+    imwrite(rawfilename, frame);
+    std::cout<<(float) (clock() - start)/CLOCKS_PER_SEC <<" sec to read frame\t";
+    fromSift = clock();
+    f2d->detect(frame, keypoints);
+    drawKeypoints(frame, keypoints, output);
+    sprintf(siftedfilename, "../siftedFrames/frame_%06d.jpg", frameCount);
+    imwrite(siftedfilename, output);
+    std::cout<<(float) (clock() - fromSift)/CLOCKS_PER_SEC <<" sec to SIFT\t";
+    std::cout<<(float) (clock() - start)/CLOCKS_PER_SEC <<" sec total\n";
 
-  cv::Ptr<cv::Feature2D> f2d = cv::xfeatures2d::SIFT::create();
-  std::vector<cv::KeyPoint> key_points;
-  f2d->detect(input, key_points);
-  cv::Mat output;
-  cv::drawKeypoints(input, key_points, output);
-  cv::imwrite("sifted.jpg", output);
-  */
+    frameCount++;
+    }
+
+
+
   return 0;
-}
 
-
+  }
 
 
