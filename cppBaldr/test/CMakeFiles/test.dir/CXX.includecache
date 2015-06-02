@@ -1,0 +1,32 @@
+#IncludeRegexLine: ^[ 	]*#[ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/mike/Development/Baldr/cppBaldr/test/test.cpp
+stdio.h
+-
+iostream
+-
+opencv2/core/core.hpp
+/home/mike/Development/Baldr/cppBaldr/test/opencv2/core/core.hpp
+opencv2/features2d/features2d.hpp
+/home/mike/Development/Baldr/cppBaldr/test/opencv2/features2d/features2d.hpp
+opencv2/highgui/highgui.hpp
+/home/mike/Development/Baldr/cppBaldr/test/opencv2/highgui/highgui.hpp
+opencv2/calib3d/calib3d.hpp
+/home/mike/Development/Baldr/cppBaldr/test/opencv2/calib3d/calib3d.hpp
+opencv2/nonfree/nonfree.hpp
+/home/mike/Development/Baldr/cppBaldr/test/opencv2/nonfree/nonfree.hpp
+opencv2/opencv.hpp
+/home/mike/Development/Baldr/cppBaldr/test/opencv2/opencv.hpp
+opencv2/xfeatures2d.hpp
+/home/mike/Development/Baldr/cppBaldr/test/opencv2/xfeatures2d.hpp
+time.h
+-
+iostream
+-
+
